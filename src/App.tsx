@@ -11,6 +11,9 @@ import StaffDashboard from "@/pages/staff/Dashboard";
 import ComingSoon from "@/pages/ComingSoon";
 import { DashboardLayout } from "@/components/nav/DashboardLayout";
 import ManagerStudentsPage from "@/pages/manager/Students";
+import ManagerRoomsPage from "@/pages/manager/Rooms";
+import StaffRoomsPage from "@/pages/staff/Rooms";
+import SuperadminRoomsPage from "@/pages/superadmin/Rooms";
 
 function App() {
   return (
@@ -28,10 +31,7 @@ function App() {
             path="/superadmin/students"
             element={<DashboardLayout role="superadmin"><ComingSoon title="Students" /></DashboardLayout>}
           />
-          <Route
-            path="/superadmin/rooms"
-            element={<DashboardLayout role="superadmin"><ComingSoon title="Rooms" /></DashboardLayout>}
-          />
+          <Route path="/superadmin/rooms" element={<SuperadminRoomsPage />} />
           <Route
             path="/superadmin/staff"
             element={<DashboardLayout role="superadmin"><ComingSoon title="Staff" /></DashboardLayout>}
@@ -46,10 +46,7 @@ function App() {
         <Route element={<ProtectedRoute allowedRoles={["manager"]} />}>
           <Route path="/manager" element={<ManagerDashboard />} />
           <Route path="/manager/students" element={<ManagerStudentsPage />} />
-          <Route
-            path="/manager/rooms"
-            element={<DashboardLayout role="manager"><ComingSoon title="Rooms" /></DashboardLayout>}
-          />
+          <Route path="/manager/rooms" element={<ManagerRoomsPage />} />
           <Route
             path="/manager/staff"
             element={<DashboardLayout role="manager"><ComingSoon title="Staff" /></DashboardLayout>}
@@ -67,10 +64,7 @@ function App() {
             path="/staff/attendance"
             element={<DashboardLayout role="staff"><ComingSoon title="Attendance" /></DashboardLayout>}
           />
-          <Route
-            path="/staff/rooms"
-            element={<DashboardLayout role="staff"><ComingSoon title="Rooms" /></DashboardLayout>}
-          />
+          <Route path="/staff/rooms" element={<StaffRoomsPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
