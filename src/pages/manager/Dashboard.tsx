@@ -1,3 +1,9 @@
+import { DashboardLayout } from "@/components/nav/DashboardLayout";
+
 export default function ManagerDashboard() {
-  return <div className="p-8">Manager Dashboard</div>;
+  return (
+    <DashboardLayout role="manager">
+      <p>Manager Dashboard</p>
+    </DashboardLayout>
+  );
 }
