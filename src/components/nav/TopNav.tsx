@@ -15,7 +15,7 @@ export function TopNav({ items, onSignOut }: TopNavProps) {
 	return (
 		<header className="hidden border-b bg-background px-6 py-3 sm:flex sm:items-center sm:justify-between">
 			<div className="flex items-center gap-8">
-				<span className="text-sm font-semibold">Hostel Management</span>
+				<span className="text-sm font-semibold">Stae</span>
 				<nav className="flex items-center gap-1">
 					{items.map((item) => {
 						const active = location.pathname === item.path;

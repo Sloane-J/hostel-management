@@ -46,7 +46,7 @@ export default function LandingPage() {
 		<div className="min-h-screen bg-muted/40">
 			{/* Header */}
 			<header className="flex items-center justify-between border-b bg-background px-6 py-4">
-				<h1 className="text-lg font-semibold">Hostel Management</h1>
+				<h1 className="text-lg font-semibold">Stae</h1>
 				{!loading && (
 					<>
 						{user && profile ? (

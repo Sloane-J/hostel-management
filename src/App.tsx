@@ -10,6 +10,7 @@ import ManagerDashboard from "@/pages/manager/Dashboard";
 import StaffDashboard from "@/pages/staff/Dashboard";
 import ComingSoon from "@/pages/ComingSoon";
 import { DashboardLayout } from "@/components/nav/DashboardLayout";
+import ManagerStudentsPage from "@/pages/manager/Students";
 
 function App() {
   return (
@@ -44,10 +45,7 @@ function App() {
         {/* Manager */}
         <Route element={<ProtectedRoute allowedRoles={["manager"]} />}>
           <Route path="/manager" element={<ManagerDashboard />} />
-          <Route
-            path="/manager/students"
-            element={<DashboardLayout role="manager"><ComingSoon title="Students" /></DashboardLayout>}
-          />
+          <Route path="/manager/students" element={<ManagerStudentsPage />} />
           <Route
             path="/manager/rooms"
             element={<DashboardLayout role="manager"><ComingSoon title="Rooms" /></DashboardLayout>}

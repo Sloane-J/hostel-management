@@ -31,7 +31,7 @@ export default function LoginPage() {
 		<div className="flex h-screen items-center justify-center bg-muted/40">
 			<Card className="w-full max-w-sm">
 				<CardHeader>
-					<CardTitle>Hostel Management Login</CardTitle>
+					<CardTitle>Stae Login</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<form onSubmit={handleSubmit} className="space-y-4">
