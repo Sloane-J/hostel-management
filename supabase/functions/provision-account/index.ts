@@ -45,7 +45,7 @@ serve(async (req) => {
     if (profileError || !callerProfile) return jsonError("Caller profile not found", 403);
 
     const body = await req.json();
-    const { type } = body; // "manager" | "student"
+    const { type } = body; // "manager" | "student" | "staff"
 
     if (type === "manager") {
       if (callerProfile.role !== "superadmin") return jsonError("Forbidden: superadmin only", 403);
@@ -106,6 +106,33 @@ serve(async (req) => {
       if (insertError) return jsonError(insertError.message, 400);
 
       return new Response(JSON.stringify({ success: true, student_id: studentRow.id }), {
+        status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (type === "staff") {
+      if (callerProfile.role !== "manager") {
+        return jsonError("Forbidden: manager only", 403);
+      }
+
+      const { name, email, password } = body;
+      if (!name || !email || !password) return jsonError("Missing fields", 400);
+
+      // hostel_id is taken from the caller's own profile server-side —
+      // never trust hostel_id from the request body here.
+      const hostel_id = callerProfile.hostel_id;
+
+      const { data: created, error: createError } = await adminClient.auth.admin.createUser({
+        email, password, email_confirm: true,
+      });
+      if (createError) return jsonError(createError.message, 400);
+
+      const { error: insertError } = await adminClient.from("users").insert({
+        id: created.user.id, name, email, role: "staff", hostel_id, status: "active",
+      });
+      if (insertError) return jsonError(insertError.message, 400);
+
+      return new Response(JSON.stringify({ success: true }), {
         status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }

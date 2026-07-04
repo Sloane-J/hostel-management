@@ -1,5 +1,6 @@
-import {
-  LayoutDashboard, Users, DoorOpen, UserCog, ClipboardCheck, CalendarCheck, type LucideIcon,
+// src/lib/nav-config.ts (complete file)
+import {CalendarCheck, ClipboardCheck, DoorOpen, 
+  LayoutDashboard, type LucideIcon,User, UserCog, Users, 
 } from "lucide-react";
 
 export interface NavItem {
@@ -29,5 +30,6 @@ export const navConfig: Record<Role, NavItem[]> = {
     { label: "Dashboard", path: "/staff", icon: LayoutDashboard },
     { label: "Attendance", path: "/staff/attendance", icon: ClipboardCheck },
     { label: "Rooms", path: "/staff/rooms", icon: DoorOpen },
+    { label: "Profile", path: "/staff/profile", icon: User },
   ],
 };
